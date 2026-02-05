@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Naad</title>
+    <meta name="description" content="Contact Naad for support, questions, or feedback">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFF8E6;
+            color: #001F3F;
+            line-height: 1.8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+        
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 8rem 1.5rem;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #001F3F;
+        }
+        
+        @media (min-width: 768px) {
+            h1 { font-size: 3.75rem; }
+        }
+        
+        p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.85;
+        }
+        
+        .email {
+            font-size: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .email a {
+            color: #B00000;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(176, 0, 0, 0.3);
+            transition: border-color 0.2s;
+        }
+        
+        .email a:hover {
+            border-bottom-color: #B00000;
+        }
+        
+        .closing {
+            font-size: 1.125rem;
+            margin-top: 3rem;
+            opacity: 0.7;
+        }
+        
+        .divider {
+            width: 64px;
+            height: 1px;
+            margin: 3rem auto;
+            background: linear-gradient(90deg, transparent, #B00000, transparent);
+        }
+        
+        footer {
+            background: #001F3F;
+            padding: 3rem 1.5rem;
+        }
+        
+        footer .footer-container {
+            max-width: 72rem;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        @media (min-width: 768px) {
+            footer .footer-container { flex-direction: row; }
+        }
+        
+        footer h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: #FFF8E6;
+            margin-bottom: 0.25rem;
+        }
+        
+        footer p {
+            font-size: 0.875rem;
+            color: #FFF8E6;
+            opacity: 0.5;
+            margin: 0;
+        }
+        
+        footer a {
+            font-size: 0.875rem;
+            color: #FFF8E6;
+            opacity: 0.7;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        
+        footer a:hover {
+            opacity: 1;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact</h1>
+        
+        <p>For questions, concerns, or feedback, write to us.</p>
+        
+        <div class="divider"></div>
+        
+        <div class="email">
+            <a href="mailto:support@naad108.com">support@naad108.com</a>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <p class="closing">We read every message with care.</p>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div>
+                <h3>Naad</h3>
+                <p>© 2026</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

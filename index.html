@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naad - Write the Mantra. Feel the Stillness.</title>
+    <meta name="description" content="Naad is a mindful mantra practice app where you write sacred sounds with your finger. Each repetition becomes a moment of presence. Each session returns you to rhythm and stillness.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFF8E6;
+            color: #001F3F;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scrollFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(12px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #FFF8E6 0%, #FFE8CC 50%, #FFD9B3 100%);
+        }
+        
+        .hero-glow {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+            background: radial-gradient(circle, #F6C254 0%, transparent 70%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+        
+        .logo-container {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            background: #FFF8E6;
+            box-shadow: 0 8px 32px rgba(176, 0, 0, 0.15);
+            padding: 1rem;
+        }
+        
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            color: #001F3F;
+        }
+        
+        .hero .tagline {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            letter-spacing: 0.02em;
+            color: #B00000;
+            opacity: 0.9;
+        }
+        
+        .hero .description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+            color: #001F3F;
+            opacity: 0.7;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            text-decoration: none;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .btn:active {
+            transform: scale(0.95);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #B00000 0%, #8B0000 100%);
+            color: #FFF8E6;
+            box-shadow: 0 4px 20px rgba(176, 0, 0, 0.25);
+        }
+        
+        .btn-secondary {
+            border: 2px solid #B00000;
+            color: #B00000;
+            background: transparent;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 40px;
+            border: 2px solid #B00000;
+            border-radius: 20px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 4px;
+        }
+        
+        .scroll-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #B00000;
+            animation: scrollFloat 1.5s infinite;
+        }
+        
+        /* Sections */
+        section {
+            padding: 8rem 1.5rem;
+        }
+        
+        .section-white {
+            background: white;
+        }
+        
+        .section-light {
+            background: #FAFAF8;
+        }
+        
+        .section-gradient {
+            background: linear-gradient(135deg, #FFF8E6 0%, #FFE8CC 100%);
+        }
+        
+        .container {
+            max-width: 72rem;
+            margin: 0 auto;
+        }
+        
+        .container-narrow {
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: #001F3F;
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #001F3F;
+            opacity: 0.6;
+            margin-bottom: 5rem;
+        }
+        
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+        
+        .grid-3 {
+            grid-template-columns: 1fr;
+        }
+        
+        @media (min-width: 768px) {
+            .hero h1 { font-size: 4.5rem; }
+            .hero .tagline { font-size: 2.5rem; }
+            .cta-buttons { flex-direction: row; }
+            .grid-2 { grid-template-columns: 1fr 1fr; }
+            .grid-3 { grid-template-columns: 1fr 1fr; }
+        }
+        
+        @media (min-width: 1024px) {
+            .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+        }
+        
+        /* Feature Cards */
+        .feature-card {
+            padding: 2rem;
+            border-radius: 1rem;
+            background: white;
+            box-shadow: 0 2px 12px rgba(0, 31, 63, 0.04);
+            transition: box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 31, 63, 0.12);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFF8E6 0%, #FFE8CC 100%);
+            color: #B00000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: #001F3F;
+        }
+        
+        .feature-card p {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #001F3F;
+            opacity: 0.7;
+        }
+        
+        /* Download Section */
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0 2rem;
+        }
+        
+        .store-button {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            background: #001F3F;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(0, 31, 63, 0.15);
+            transition: transform 0.2s;
+        }
+        
+        .store-button:hover {
+            transform: scale(1.05);
+        }
+        
+        .store-button svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .store-text-small {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+        
+        .store-text-large {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        @media (min-width: 640px) {
+            .download-buttons { flex-direction: row; }
+        }
+        
+        /* Footer */
+        footer {
+            background: #001F3F;
+            padding: 4rem 1.5rem;
+        }
+        
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        @media (min-width: 768px) {
+            footer .container { flex-direction: row; }
+        }
+        
+        footer h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #FFF8E6;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer p {
+            font-size: 0.875rem;
+            color: #FFF8E6;
+            opacity: 0.5;
+        }
+        
+        footer a {
+            font-size: 0.875rem;
+            color: #FFF8E6;
+            opacity: 0.7;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        
+        footer a:hover {
+            opacity: 1;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-divider {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 248, 230, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #F6C254;
+        }
+        
+        .footer-dot-1 { opacity: 0.3; width: 4px; height: 4px; }
+        .footer-dot-2 { opacity: 0.5; width: 6px; height: 6px; }
+        .footer-dot-3 { opacity: 0.3; width: 4px; height: 4px; }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        
+        <div class="hero-content fade-in-up">
+            <!-- Logo - REPLACE logo.png with your actual logo file -->
+            <div class="logo-container">
+                <img src="logo.png" alt="Naad Logo">
+            </div>
+            
+            <h1>Naad</h1>
+            
+            <p class="tagline">Write the Mantra. Feel the Stillness.</p>
+            
+            <p class="description">
+                Naad is a mindful mantra practice app where you write sacred sounds with your finger. Each repetition becomes a moment of presence. Each session returns you to rhythm and stillness.
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="#download" class="btn btn-primary">Download Now</a>
+                <a href="#what-is-naad" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-dot"></div>
+        </div>
+    </section>
+
+    <!-- WHAT IS NAAD SECTION -->
+    <section id="what-is-naad" class="section-white">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h2>What is Naad</h2>
+                    <div style="font-size: 1.125rem; line-height: 1.8; opacity: 0.8;">
+                        <p style="margin-bottom: 1.5rem;">
+                            Naad transforms mantra repetition into a quiet writing practice.
+                        </p>
+                        <p style="margin-bottom: 1.5rem;">
+                            Each written mantra is one japa.<br>
+                            Each japa deepens awareness.
+                        </p>
+                        <p style="margin-bottom: 1.5rem;">
+                            There are no points, no levels, and no comparisons.<br>
+                            Only repetition, attention, and rhythm.
+                        </p>
+                        <p style="padding-top: 1rem; border-top: 1px solid rgba(0, 31, 63, 0.1);">
+                            No noise.<br>
+                            <span style="color: #B00000; font-weight: 500;">Just practice.</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <div style="aspect-ratio: 1; border-radius: 1.5rem; padding: 3rem; background: linear-gradient(135deg, #FFF8E6 0%, #FFE8CC 100%); box-shadow: 0 8px 32px rgba(0, 31, 63, 0.08); max-width: 400px;">
+                        <svg viewBox="0 0 200 200" style="width: 100%; height: 100%;">
+                            <circle cx="100" cy="100" r="70" fill="none" stroke="#F6C254" stroke-width="1" opacity="0.3"/>
+                            <circle cx="100" cy="100" r="60" fill="none" stroke="#F6C254" stroke-width="2" opacity="0.5"/>
+                            <text x="100" y="110" text-anchor="middle" font-size="48" fill="#B00000" style="font-family: Poppins; font-weight: 300;">ॐ</text>
+                            <circle cx="140" cy="80" r="4" fill="#001F3F"/>
+                            <line x1="140" y1="80" x2="135" y2="60" stroke="#001F3F" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="section-light">
+        <div class="container">
+            <div class="text-center">
+                <h2>Features</h2>
+                <p class="section-subtitle">Core practices for mindful repetition</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <!-- Write -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 24px; height: 24px;">
+                            <path d="M12 19L12 5M12 5C8 5 8 8 8 8M12 5C16 5 16 8 16 8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 12C8 12 8 15 12 15C16 15 16 12 16 12" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+                            <circle cx="12" cy="12" r="1" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>Writing Practice</h3>
+                    <p>Write mantras freely with your finger. Presence over perfection.</p>
+                </div>
+                
+                <!-- Chant -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 24px; height: 24px;">
+                            <path d="M9 18V5L21 3V16" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="6" cy="18" r="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="18" cy="16" r="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 10L21 8" stroke-linecap="round" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <h3>Chanting</h3>
+                    <p>Chant aloud and count naturally, one repetition at a time.</p>
+                </div>
+                
+                <!-- Custom Mantras -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 24px; height: 24px;">
+                            <path d="M12 5V19M5 12H19" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <h3>Custom Mantras</h3>
+                    <p>Add your own mantras for personal practice.</p>
+                </div>
+                
+                <!-- Sankalps -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 24px; height: 24px;">
+                            <path d="M12 2C12 2 8 4 8 8C8 10 9 12 12 12C15 12 16 10 16 8C16 4 12 2 12 2Z" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 12L6 14M12 12L12 15M16 12L18 14" stroke-linecap="round" opacity="0.5"/>
+                            <circle cx="6" cy="18" r="2"/>
+                            <circle cx="12" cy="20" r="2"/>
+                            <circle cx="18" cy="18" r="2"/>
+                        </svg>
+                    </div>
+                    <h3>Sankalps</h3>
+                    <p>Join collective intentions if you wish. Optional and pressure-free.</p>
+                </div>
+                
+                <!-- My Sadhana -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 24px; height: 24px;">
+                            <path d="M12 2L12 8M12 8C15 8 17 10 17 13C17 16 15 18 12 18C9 18 7 16 7 13C7 10 9 8 12 8Z" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="13" r="2" fill="currentColor" opacity="0.3"/>
+                            <path d="M12 18L12 22" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>My Sadhana</h3>
+                    <p>View your personal practice history. Private and quiet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESIGN PHILOSOPHY SECTION -->
+    <section class="section-white">
+        <div class="container-narrow text-center">
+            <h2>A Calm Digital Space</h2>
+            
+            <div style="font-size: 1.125rem; line-height: 1.8; opacity: 0.8; margin-top: 3rem;">
+                <p style="margin-bottom: 1.5rem;">Naad is designed without gamification.</p>
+                <p style="margin-bottom: 1.5rem;">
+                    No streak pressure.<br>
+                    No competitive metrics.<br>
+                    No flashy rewards.
+                </p>
+                <div style="padding: 2rem 0;">
+                    <div style="width: 64px; height: 1px; margin: 0 auto; background: linear-gradient(90deg, transparent, #B00000, transparent);"></div>
+                </div>
+                <p style="margin-bottom: 1.5rem;">
+                    The goal is <span style="color: #B00000; font-weight: 500;">presence</span>.
+                </p>
+                <p style="margin-bottom: 1.5rem;">
+                    The method is <span style="color: #B00000; font-weight: 500;">repetition</span>.
+                </p>
+                <p>
+                    The experience is <span style="color: #B00000; font-weight: 500;">yours</span>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY SECTION -->
+    <section class="section-gradient">
+        <div class="container">
+            <div class="grid grid-2">
+                <div style="display: flex; align-items: center; justify-content: center; height: 20rem;">
+                    <svg viewBox="0 0 200 200" style="width: 100%; max-width: 24rem; height: 100%;">
+                        <circle cx="100" cy="100" r="60" fill="#F6C254" opacity="0.1"/>
+                        <circle cx="100" cy="30" r="4" fill="#B00000" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="0s"/></circle>
+                        <circle cx="152" cy="50" r="4" fill="#B00000" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="0.25s"/></circle>
+                        <circle cx="178" cy="100" r="4" fill="#B00000" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="0.5s"/></circle>
+                        <circle cx="152" cy="150" r="4" fill="#B00000" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="0.75s"/></circle>
+                        <circle cx="100" cy="170" r="4" fill="#B00000" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="1s"/></circle>
+                        <circle cx="48" cy="150" r="4" fill="#B00000" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="1.25s"/></circle>
+                        <circle cx="22" cy="100" r="4" fill="#B00000" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="1.5s"/></circle>
+                        <circle cx="48" cy="50" r="4" fill="#B00000" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="1.75s"/></circle>
+                        <circle cx="130" cy="40" r="4" fill="#B00000" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="2s"/></circle>
+                        <circle cx="165" cy="75" r="4" fill="#B00000" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="2.25s"/></circle>
+                        <circle cx="165" cy="125" r="4" fill="#B00000" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="2.5s"/></circle>
+                        <circle cx="130" cy="160" r="4" fill="#B00000" opacity="0.6"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" begin="2.75s"/></circle>
+                        <text x="100" y="110" text-anchor="middle" font-size="32" fill="#B00000" opacity="0.8" style="font-family: Poppins;">ॐ</text>
+                    </svg>
+                </div>
+                
+                <div>
+                    <h2>Collective Sankalp</h2>
+                    <div style="font-size: 1.125rem; line-height: 1.8; opacity: 0.8; margin-top: 1.5rem;">
+                        <p style="margin-bottom: 1rem;">Join a shared intention.</p>
+                        <p style="margin-bottom: 1rem;">Your practice contributes silently.</p>
+                        <p>Participation is reversible and pressure-free.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOAD SECTION -->
+    <section id="download" class="section-white">
+        <div class="container-narrow text-center">
+            <h2>Download Naad</h2>
+            
+            <p style="font-size: 1.125rem; line-height: 1.8; opacity: 0.7; margin: 2rem 0 3rem;">
+                Begin your mindful practice today.
+            </p>
+
+            <div class="download-buttons">
+                <!-- App Store - UPDATE href with your actual App Store link -->
+                <a href="#" class="store-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                    </svg>
+                    <div style="text-align: left;">
+                        <div class="store-text-small">Download on the</div>
+                        <div class="store-text-large">App Store</div>
+                    </div>
+                </a>
+
+                <!-- Google Play - UPDATE href with your actual Play Store link -->
+                <a href="#" class="store-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/>
+                    </svg>
+                    <div style="text-align: left;">
+                        <div class="store-text-small">Get it on</div>
+                        <div class="store-text-large">Google Play</div>
+                    </div>
+                </a>
+            </div>
+
+            <p style="font-size: 0.875rem; color: #001F3F; opacity: 0.5; margin-top: 2rem;">
+                Available on iOS and Android
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div>
+                <h3>Naad</h3>
+                <p>© 2026</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+        
+        <div class="footer-divider">
+            <div class="footer-dot footer-dot-1"></div>
+            <div class="footer-dot footer-dot-2"></div>
+            <div class="footer-dot footer-dot-3"></div>
+        </div>
+    </footer>
+</body>
+</html>
