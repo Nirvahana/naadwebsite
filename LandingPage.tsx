@@ -74,7 +74,7 @@ const MandalaPattern = () => (
   </svg>
 );
 
-export function LandingPage({ onNavigate }: { onNavigate: (page: 'landing' | 'privacy' | 'beta') => void }) {
+export function LandingPage({ onNavigate }: { onNavigate: (page: 'landing' | 'privacy' | 'beta' | 'digital-wall') => void }) {
   return (
     <div className="min-h-screen bg-[#FFF8E6] text-[#001F3F]">
       {/* HERO SECTION */}
@@ -168,13 +168,29 @@ export function LandingPage({ onNavigate }: { onNavigate: (page: 'landing' | 'pr
             >
               Download Now
             </a>
-            <a
-              href="#what-is-naad"
+            <button
+              onClick={() => onNavigate('digital-wall')}
               className="px-8 py-4 rounded-full font-medium border-2 transition-all hover:scale-105 active:scale-95"
               style={{ 
                 fontFamily: 'Poppins',
                 borderColor: '#B00000',
-                color: '#B00000'
+                color: '#B00000',
+                background: 'rgba(255, 248, 230, 0.5)'
+              }}
+            >
+              Digital Wall of Devotion
+            </button>
+          </div>
+          
+          {/* Secondary link */}
+          <div className="mt-6">
+            <a
+              href="#what-is-naad"
+              className="text-sm transition-opacity hover:opacity-100 underline"
+              style={{ 
+                fontFamily: 'Inter',
+                color: '#001F3F',
+                opacity: 0.6
               }}
             >
               Learn More
@@ -201,7 +217,7 @@ export function LandingPage({ onNavigate }: { onNavigate: (page: 'landing' | 'pr
       </section>
 
       {/* WHAT IS NAAD SECTION */}
-      <section className="py-32 px-6 bg-white">
+      <section id="what-is-naad" className="py-32 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* Left: Philosophy text */}
@@ -530,14 +546,12 @@ export function LandingPage({ onNavigate }: { onNavigate: (page: 'landing' | 'pr
 
           {/* Download buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            {/* App Store - Add your link to href */}
+            {/* App Store */}
             <a
-              href="#"
+              href="https://apps.apple.com/us/app/id6758721469"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#001F3F] text-white transition-all hover:scale-105 active:scale-95"
-              style={{ 
-                fontFamily: 'Inter',
-                boxShadow: '0 4px 20px rgba(0, 31, 63, 0.15)'
-              }}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
@@ -548,14 +562,12 @@ export function LandingPage({ onNavigate }: { onNavigate: (page: 'landing' | 'pr
               </div>
             </a>
 
-            {/* Google Play - Add your link to href */}
+            {/* Google Play */}
             <a
-              href="#"
+              href="https://play.google.com/store/apps/details?id=com.naad108.app"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#001F3F] text-white transition-all hover:scale-105 active:scale-95"
-              style={{ 
-                fontFamily: 'Inter',
-                boxShadow: '0 4px 20px rgba(0, 31, 63, 0.15)'
-              }}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/>
@@ -601,6 +613,13 @@ export function LandingPage({ onNavigate }: { onNavigate: (page: 'landing' | 'pr
 
             {/* Links */}
             <div className="flex gap-8">
+              <button 
+                className="text-sm transition-opacity hover:opacity-100"
+                style={{ fontFamily: 'Inter', color: '#FFF8E6', opacity: 0.7 }}
+                onClick={() => onNavigate('digital-wall')}
+              >
+                Digital Wall
+              </button>
               <button 
                 className="text-sm transition-opacity hover:opacity-100"
                 style={{ fontFamily: 'Inter', color: '#FFF8E6', opacity: 0.7 }}

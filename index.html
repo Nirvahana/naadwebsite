@@ -6,6 +6,9 @@
     <title>Naad - Write the Mantra. Feel the Stillness.</title>
     <meta name="description" content="Naad is a mindful mantra practice app where you write sacred sounds with your finger. Each repetition becomes a moment of presence. Each session returns you to rhythm and stillness.">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,7 +86,7 @@
             position: relative;
             z-index: 10;
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
             max-width: 48rem;
             margin: 0 auto;
         }
@@ -91,21 +94,47 @@
         .logo-container {
             width: 96px;
             height: 96px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 1rem;
             border-radius: 50%;
             background: #FFF8E6;
             box-shadow: 0 8px 32px rgba(176, 0, 0, 0.15);
             padding: 1rem;
+            position: relative;
+        }
+        
+        .logo-container::before,
+        .logo-container::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid #F6C254;
+        }
+        
+        .logo-container::before {
+            width: 200px;
+            height: 200px;
+            opacity: 0.3;
+        }
+        
+        .logo-container::after {
+            width: 300px;
+            height: 300px;
+            opacity: 0.2;
         }
         
         .logo-container img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            position: relative;
+            z-index: 1;
         }
         
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 300;
             margin-bottom: 1rem;
             letter-spacing: 0.05em;
@@ -114,7 +143,7 @@
         
         .hero .tagline {
             font-family: 'Poppins', sans-serif;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 300;
             margin-bottom: 2rem;
             letter-spacing: 0.02em;
@@ -123,7 +152,7 @@
         }
         
         .hero .description {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             line-height: 1.8;
             margin-bottom: 3rem;
             max-width: 42rem;
@@ -173,7 +202,7 @@
         
         .scroll-indicator {
             position: absolute;
-            bottom: 3rem;
+            bottom: 1rem;
             left: 50%;
             transform: translateX(-50%);
             width: 24px;
@@ -186,6 +215,12 @@
             padding: 4px;
         }
         
+        @media (max-height: 700px) {
+            .scroll-indicator {
+                display: none;
+            }
+        }
+        
         .scroll-dot {
             width: 6px;
             height: 6px;
@@ -195,10 +230,6 @@
         }
         
         /* Sections */
-        section {
-            padding: 8rem 1.5rem;
-        }
-        
         .section-white {
             background: white;
         }
@@ -254,8 +285,9 @@
         }
         
         @media (min-width: 768px) {
-            .hero h1 { font-size: 4.5rem; }
-            .hero .tagline { font-size: 2.5rem; }
+            .hero h1 { font-size: 4rem; }
+            .hero .tagline { font-size: 1.875rem; }
+            .hero .description { font-size: 1.25rem; }
             .cta-buttons { flex-direction: row; }
             .grid-2 { grid-template-columns: 1fr 1fr; }
             .grid-3 { grid-template-columns: 1fr 1fr; }
@@ -437,12 +469,16 @@
             <p class="tagline">Write the Mantra. Feel the Stillness.</p>
             
             <p class="description">
-                Naad is a mindful mantra practice app where you write sacred sounds with your finger. Each repetition becomes a moment of presence. Each session returns you to rhythm and stillness.
+                Naad is a mindful mantra practice app where you write with your finger, return to rhythm, and rediscover inner stillness.
             </p>
             
             <div class="cta-buttons">
                 <a href="#download" class="btn btn-primary">Download Now</a>
-                <a href="#what-is-naad" class="btn btn-secondary">Learn More</a>
+                <a href="digital-wall.html" class="btn btn-secondary">Digital Wall of Devotion</a>
+            </div>
+            
+            <div style="margin-top: 1.5rem;">
+                <a href="#what-is-naad" style="font-size: 0.875rem; color: #001F3F; opacity: 0.6; text-decoration: underline;">Learn More</a>
             </div>
         </div>
         
@@ -452,8 +488,8 @@
     </section>
 
     <!-- WHAT IS NAAD SECTION -->
-    <section id="what-is-naad" class="section-white">
-        <div class="container">
+    <section id="what-is-naad" class="section-white" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 4rem 0;">
+        <div class="container" style="padding: 1.5rem;">
             <div class="grid grid-2">
                 <div>
                     <h2>What is Naad</h2>
@@ -492,8 +528,8 @@
     </section>
 
     <!-- FEATURES SECTION -->
-    <section class="section-light">
-        <div class="container">
+    <section class="section-light" style="padding: 5rem 0;">
+        <div class="container"  style="padding: 1.5rem;">
             <div class="text-center">
                 <h2>Features</h2>
                 <p class="section-subtitle">Core practices for mindful repetition</p>
@@ -539,6 +575,20 @@
                     <p>Add your own mantras for personal practice.</p>
                 </div>
                 
+                <!-- Mantra Gallery -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 24px; height: 24px;">
+                            <rect x="3" y="3" width="7" height="7" rx="1" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="14" y="3" width="7" height="7" rx="1" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="3" y="14" width="7" height="7" rx="1" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <h3>Mantra Gallery</h3>
+                    <p>Browse a collection of traditional mantras and their meanings.</p>
+                </div>
+                
                 <!-- Sankalps -->
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -571,8 +621,8 @@
     </section>
 
     <!-- DESIGN PHILOSOPHY SECTION -->
-    <section class="section-white">
-        <div class="container-narrow text-center">
+    <section class="section-white" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 4rem 0;">
+        <div class="container-narrow text-center" style="padding: 1.5rem;">
             <h2>A Calm Digital Space</h2>
             
             <div style="font-size: 1.125rem; line-height: 1.8; opacity: 0.8; margin-top: 3rem;">
@@ -599,8 +649,8 @@
     </section>
 
     <!-- COMMUNITY SECTION -->
-    <section class="section-gradient">
-        <div class="container">
+    <section class="section-gradient" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 4rem 0;">
+        <div class="container"  style="padding: 1.5rem;">
             <div class="grid grid-2">
                 <div style="display: flex; align-items: center; justify-content: center; height: 20rem;">
                     <svg viewBox="0 0 200 200" style="width: 100%; max-width: 24rem; height: 100%;">
@@ -634,8 +684,8 @@
     </section>
 
     <!-- DOWNLOAD SECTION -->
-    <section id="download" class="section-white">
-        <div class="container-narrow text-center">
+    <section id="download" class="section-white" style="min-height: 60vh; display: flex; align-items: center; justify-content: center; padding: 4rem 0;">
+        <div class="container-narrow text-center"  style="padding: 1.5rem;">
             <h2>Download Naad</h2>
             
             <p style="font-size: 1.125rem; line-height: 1.8; opacity: 0.7; margin: 2rem 0 3rem;">
@@ -643,8 +693,8 @@
             </p>
 
             <div class="download-buttons">
-                <!-- App Store - UPDATE href with your actual App Store link -->
-                <a href="#" class="store-button">
+                <!-- App Store -->
+                <a href="https://apps.apple.com/us/app/id6758721469" target="_blank" rel="noopener noreferrer" class="store-button">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
                     </svg>
@@ -654,8 +704,8 @@
                     </div>
                 </a>
 
-                <!-- Google Play - UPDATE href with your actual Play Store link -->
-                <a href="#" class="store-button">
+                <!-- Google Play -->
+                <a href="https://play.google.com/store/apps/details?id=com.naad108.app" target="_blank" rel="noopener noreferrer" class="store-button">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/>
                     </svg>

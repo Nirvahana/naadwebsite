@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Wall of Devotion - Naad</title>
+    <meta name="description" content="Celebrate collective devotion and shared spiritual practice in the Naad community.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFF8E6;
+            color: #001F3F;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #FFF8E6 0%, #FFE8CC 50%, #FFD9B3 100%);
+        }
+        
+        .hero-glow {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+            background: radial-gradient(circle, #F6C254 0%, transparent 70%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 56rem;
+            margin: 0 auto;
+        }
+        
+        .logo-container {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            background: #FFF8E6;
+            box-shadow: 0 8px 32px rgba(176, 0, 0, 0.15);
+            padding: 1rem;
+            position: relative;
+        }
+        
+        .logo-container::before,
+        .logo-container::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid #F6C254;
+        }
+        
+        .logo-container::before {
+            width: 110px;
+            height: 110px;
+            opacity: 0.3;
+        }
+        
+        .logo-container::after {
+            width: 124px;
+            height: 124px;
+            opacity: 0.2;
+        }
+        
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            color: #001F3F;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        .nav-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #B00000;
+            text-decoration: none;
+            font-size: 0.875rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .nav-link:hover {
+            opacity: 1;
+        }
+        
+        /* Content Section */
+        section {
+            padding: 6rem 1.5rem;
+        }
+        
+        .section-white {
+            background: white;
+        }
+        
+        .section-gradient {
+            background: linear-gradient(135deg, #FFF8E6 0%, #FFE8CC 100%);
+        }
+        
+        .container {
+            max-width: 72rem;
+            margin: 0 auto;
+        }
+        
+        .container-narrow {
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: #001F3F;
+        }
+        
+        p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.85;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        @media (min-width: 768px) {
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 4px 24px rgba(0, 31, 63, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #B00000, #F6C254, #B00000);
+        }
+        
+        .stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 4rem;
+            font-weight: 300;
+            color: #B00000;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+        }
+        
+        .stat-mantra {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            color: #001F3F;
+        }
+        
+        /* Collective Sankalp Cards */
+        .sankalp-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @media (min-width: 768px) {
+            .sankalp-grid { grid-template-columns: 1fr 1fr; }
+        }
+        
+        .sankalp-card {
+            background: linear-gradient(135deg, #FFF8E6 0%, #FFE8CC 100%);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 31, 63, 0.06);
+        }
+        
+        .sankalp-mantra {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: #B00000;
+            margin-bottom: 1.5rem;
+        }
+        
+        .sankalp-progress {
+            margin-top: 1.5rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(0, 31, 63, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #B00000, #F6C254);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+        
+        .progress-text {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+        
+        /* Community Message */
+        .community-message {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 3rem;
+            margin-top: 4rem;
+            box-shadow: 0 4px 24px rgba(0, 31, 63, 0.08);
+            text-align: center;
+        }
+        
+        .divider {
+            width: 64px;
+            height: 1px;
+            margin: 3rem auto;
+            background: linear-gradient(90deg, transparent, #B00000, transparent);
+        }
+        
+        .highlight {
+            color: #B00000;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background: #001F3F;
+            padding: 4rem 1.5rem;
+        }
+        
+        footer .container {
+            max-width: 72rem;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        @media (min-width: 768px) {
+            footer .container { flex-direction: row; }
+        }
+        
+        footer h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #FFF8E6;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer p {
+            font-size: 0.875rem;
+            color: #FFF8E6;
+            opacity: 0.5;
+            margin: 0;
+        }
+        
+        footer a {
+            font-size: 0.875rem;
+            color: #FFF8E6;
+            opacity: 0.7;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        
+        footer a:hover {
+            opacity: 1;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .stat-number { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        
+        <div class="hero-content fade-in-up">
+            <div class="logo-container">
+                <img src="logo.png" alt="Naad Logo">
+            </div>
+            
+            <h1>Digital Wall of Devotion</h1>
+            <p class="hero-subtitle">
+                A quiet celebration of collective practice.<br>
+                Each number represents countless moments of presence.
+            </p>
+            <a href="index.html" class="nav-link">← Back to Home</a>
+        </div>
+    </section>
+
+    <!-- Community Stats -->
+    <section class="section-white">
+        <div class="container">
+            <div class="text-center">
+                <h2>Our Collective Practice</h2>
+                <p style="max-width: 42rem; margin: 0 auto; opacity: 0.7;">
+                    These numbers are not for comparison. They are a testament to shared devotion, quiet repetition, and the power of communal intention.
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">12.8M+</div>
+                    <div class="stat-label">Total Japas</div>
+                    <div class="stat-mantra">ॐ</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">8,642</div>
+                    <div class="stat-label">Active Practitioners</div>
+                    <div class="stat-mantra">🙏</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">156</div>
+                    <div class="stat-label">Countries</div>
+                    <div class="stat-mantra">🌍</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Someone is Practicing</div>
+                    <div class="stat-mantra">✨</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collective Sankalps -->
+    <section class="section-gradient">
+        <div class="container">
+            <div class="text-center">
+                <h2>Active Collective Sankalps</h2>
+                <p style="max-width: 42rem; margin: 0 auto; opacity: 0.7;">
+                    Join others in shared intention. Your contribution is anonymous, but never unnoticed.
+                </p>
+            </div>
+
+            <div class="sankalp-grid">
+                <!-- Ram Sankalp -->
+                <div class="sankalp-card">
+                    <div class="sankalp-mantra">राम</div>
+                    <p>Global collective sankalp for Ram mantra</p>
+                    
+                    <div class="sankalp-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 73%;"></div>
+                        </div>
+                        <div class="progress-text">
+                            <strong>7.3M</strong> of 10M target achieved
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Om Namah Shivaya Sankalp -->
+                <div class="sankalp-card">
+                    <div class="sankalp-mantra">ॐ नमः शिवाय</div>
+                    <p>Global collective sankalp for Om Namah Shivaya</p>
+                    
+                    <div class="sankalp-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 58%;"></div>
+                        </div>
+                        <div class="progress-text">
+                            <strong>5.8M</strong> of 10M target achieved
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Message -->
+    <section class="section-white">
+        <div class="container-narrow">
+            <div class="community-message">
+                <h2 style="font-size: 2rem;">A Space Without Ego</h2>
+                
+                <div class="divider"></div>
+                
+                <p>
+                    This wall does not display names, rankings, or individual achievements.
+                </p>
+                
+                <p>
+                    It exists to remind us that <span class="highlight">we are not practicing alone</span>.
+                </p>
+                
+                <p>
+                    Somewhere in the world, right now, someone is writing a mantra.<br>
+                    Someone is returning to their breath.<br>
+                    Someone is finding stillness.
+                </p>
+                
+                <div class="divider"></div>
+                
+                <p style="opacity: 0.6; font-size: 1rem;">
+                    Your practice contributes to this collective energy.<br>
+                    Thank you for being here.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div>
+                <h3>Naad</h3>
+                <p>© 2026</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

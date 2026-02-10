@@ -1,0 +1,8 @@
+{
+  "name": "naad-website",
+  "version": "1.0.0",
+  "description": "Naad website with Digital Wall",
+  "scripts": {
+    "serve": "npx http-server -p 8080 -c-1"
+  }
+}
